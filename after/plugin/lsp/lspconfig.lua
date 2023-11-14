@@ -11,8 +11,8 @@ local cmp_nvim_lsp = require('cmp_nvim_lsp')
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<leader>ww', vim.diagnostic.open_float)
-vim.keymap.set('n', '<C-k>', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<C-j>', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>K', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>J', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
@@ -91,6 +91,13 @@ lspconfig.zls.setup {
 }
 lspconfig.emmet_ls.setup {
     capabilities = capabilities
+}
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
+
+lspconfig.cssls.setup {
+    capabilities = cssls_capabilities
 }
 lspconfig.rust_analyzer.setup {
     -- Server-specific settings. See `:help lspconfig-setup`
