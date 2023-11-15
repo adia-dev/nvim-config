@@ -58,7 +58,8 @@ return require('packer').startup(function(use)
     })
 
     use("nvim-lualine/lualine.nvim")
-    use 'andweeb/presence.nvim'
+    use('andweeb/presence.nvim')
+    use('JoosepAlviste/nvim-ts-context-commentstring')
 
     use {
         "windwp/nvim-autopairs",
