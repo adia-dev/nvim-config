@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts)
 		vim.keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
+		vim.keymap.set("n", "<leader>gk", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 		vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
@@ -106,6 +107,9 @@ lspconfig.zls.setup({
 	capabilities = capabilities,
 })
 lspconfig.emmet_ls.setup({
+	capabilities = capabilities,
+})
+lspconfig.cmake.setup({
 	capabilities = capabilities,
 })
 
