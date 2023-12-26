@@ -107,6 +107,14 @@ return require("packer").startup(function(use)
 		requires = { "nvim-treesitter/nvim-treesitter" },
 		"Badhi/nvim-treesitter-cpp-tools",
 	})
+	use("Hoffs/omnisharp-extended-lsp.nvim")
 
-    -- use '~/Projects/Dev/nvim/cpy_buffers.nvim'
+	use({ "akinsho/toggleterm.nvim", tag = "*" })
+
+	-- use '~/Projects/Dev/nvim/cpy_buffers.nvim'
+
+	use({
+		"adia-dev/cpy_buffers.nvim",
+		requires = { "nvim-telescope/telescope.nvim" },
+	})
 end)

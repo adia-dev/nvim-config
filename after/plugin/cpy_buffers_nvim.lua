@@ -1,1 +1,2 @@
-require("cpy_buffers").setup()
+require("cpy_buffers").setup({
+})

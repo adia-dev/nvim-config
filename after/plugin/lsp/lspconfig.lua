@@ -2,6 +2,7 @@
 -- renaming an import and the file gets updated
 -- or vice-versa...
 require("lsp-file-operations").setup()
+local pid = vim.fn.getpid()
 
 -- Setup language servers.
 local lspconfig = require("lspconfig")
@@ -19,15 +20,25 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
+		local bufnr = ev.buf
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
 		-- Enable completion triggered by <c-x><c-o>
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
 		vim.keymap.set("n", "gR", "<CMD>Telescope lsp_references<CR>", opts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts)
+
+		if client.name == "omnisharp" then
+			local omnisharp_opts = { buffer = bufnr }
+			vim.keymap.set("n", "gd", require("omnisharp_extended").lsp_definitions, omnisharp_opts)
+		else
+			vim.keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts)
+		end
+
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts)
 		vim.keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
@@ -112,6 +123,15 @@ lspconfig.emmet_ls.setup({
 lspconfig.cmake.setup({
 	capabilities = capabilities,
 })
+lspconfig.docker_compose_language_service.setup({
+	capabilities = capabilities,
+})
+lspconfig.dockerls.setup({
+	capabilities = capabilities,
+})
+lspconfig.kotlin_language_server.setup({
+	capabilities = capabilities,
+})
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -126,3 +146,46 @@ lspconfig.rust_analyzer.setup({
 		["rust-analyzer"] = {},
 	},
 })
+
+local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/Omnisharp.dll"
+
+lspconfig.omnisharp.setup({
+	cmd = { "dotnet", omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+	["textDocument/definition"] = require("omnisharp_extended").handler,
+	capabilities = capabilities,
+	-- Enables support for reading code style, naming convention and analyzer
+	-- settings from .editorconfig.
+	enable_editorconfig_support = true,
+
+	-- If true, MSBuild project system will only load projects for files that
+	-- were opened in the editor. This setting is useful for big C# codebases
+	-- and allows for faster initialization of code navigation features only
+	-- for projects that are relevant to code that is being edited. With this
+	-- setting enabled OmniSharp may load fewer projects and may thus display
+	-- incomplete reference lists for symbols.
+	enable_ms_build_load_projects_on_demand = false,
+
+	-- Enables support for roslyn analyzers, code fixes and rulesets.
+	enable_roslyn_analyzers = true,
+
+	-- Specifies whether 'using' directives should be grouped and sorted during
+	-- document formatting.
+	organize_imports_on_format = true,
+
+	-- Enables support for showing unimported types and unimported extension
+	-- methods in completion lists. When committed, the appropriate using
+	-- directive will be added at the top of the current file. This option can
+	-- have a negative impact on initial completion responsiveness,
+	-- particularly for the first few completion sessions after opening a
+	-- solution.
+	enable_import_completion = true,
+
+	-- Specifies whether to include preview versions of the .NET SDK when
+	-- determining which version to use for project loading.
+	sdk_include_prereleases = true,
+
+	-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+	-- true
+	analyze_open_documents_only = false,
+})
+
