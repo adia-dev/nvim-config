@@ -117,4 +117,6 @@ return require("packer").startup(function(use)
 		"adia-dev/cpy_buffers.nvim",
 		requires = { "nvim-telescope/telescope.nvim" },
 	})
+
+    use({"lewis6991/gitsigns.nvim"})
 end)
