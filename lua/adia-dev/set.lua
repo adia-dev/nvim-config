@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-
 -- tabs and indentation
 opt.relativenumber = true
 opt.number = true
@@ -45,7 +44,7 @@ opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
-opt.updatetime  = 50
+opt.updatetime = 50
 
 vim.g.netrw_preview = 1
 vim.g.netrw_winsize = 30

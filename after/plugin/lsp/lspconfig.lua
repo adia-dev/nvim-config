@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gR", "<CMD>Telescope lsp_references<CR>", opts)
+		vim.keymap.set("n", "gr", "<CMD>Telescope lsp_references<CR>", opts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
 		if client.name == "omnisharp" then
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<leader>fl", function()
 			vim.lsp.buf.format({ async = true })
 		end, opts)

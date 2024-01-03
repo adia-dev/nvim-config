@@ -29,6 +29,14 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"nvimdev/lspsaga.nvim",
+		after = "nvim-lspconfig",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+	})
+
+	use({
 		"antosha417/nvim-lsp-file-operations",
 		requires = {
 			"nvim-lua/plenary.nvim",
@@ -118,5 +126,18 @@ return require("packer").startup(function(use)
 		requires = { "nvim-telescope/telescope.nvim" },
 	})
 
+<<<<<<< HEAD
     use({"lewis6991/gitsigns.nvim"})
+=======
+	use({ "lewis6991/gitsigns.nvim" })
+
+	use({ "rose-pine/neovim", as = "rose-pine" })
+
+	use({ "folke/noice.nvim" })
+	use({ "MunifTanjim/nui.nvim" })
+
+	use({ "olekatpyle/xunit.nvim" })
+
+	use("rcarriga/nvim-notify")
+>>>>>>> a3282ef (Installed and configured gitsigns)
 end)
