@@ -126,9 +126,6 @@ return require("packer").startup(function(use)
 		requires = { "nvim-telescope/telescope.nvim" },
 	})
 
-<<<<<<< HEAD
-    use({"lewis6991/gitsigns.nvim"})
-=======
 	use({ "lewis6991/gitsigns.nvim" })
 
 	use({ "rose-pine/neovim", as = "rose-pine" })
@@ -139,5 +136,4 @@ return require("packer").startup(function(use)
 	use({ "olekatpyle/xunit.nvim" })
 
 	use("rcarriga/nvim-notify")
->>>>>>> a3282ef (Installed and configured gitsigns)
 end)
