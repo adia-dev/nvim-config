@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts)
 		end
 
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "K", "<CMD>Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts)
 		vim.keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
 		vim.keymap.set("n", "<leader>gk", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -127,6 +127,9 @@ lspconfig.docker_compose_language_service.setup({
 	capabilities = capabilities,
 })
 lspconfig.dockerls.setup({
+	capabilities = capabilities,
+})
+lspconfig.taplo.setup({
 	capabilities = capabilities,
 })
 lspconfig.kotlin_language_server.setup({

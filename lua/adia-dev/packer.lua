@@ -31,9 +31,6 @@ return require("packer").startup(function(use)
 	use({
 		"nvimdev/lspsaga.nvim",
 		after = "nvim-lspconfig",
-		config = function()
-			require("lspsaga").setup({})
-		end,
 	})
 
 	use({
@@ -119,12 +116,12 @@ return require("packer").startup(function(use)
 
 	use({ "akinsho/toggleterm.nvim", tag = "*" })
 
-	-- use '~/Projects/Dev/nvim/cpy_buffers.nvim'
+	use '~/Projects/Dev/lua/cpy_buffers.nvim'
 
-	use({
-		"adia-dev/cpy_buffers.nvim",
-		requires = { "nvim-telescope/telescope.nvim" },
-	})
+	-- use({
+	-- 	"adia-dev/cpy_buffers.nvim",
+	-- 	requires = { "nvim-telescope/telescope.nvim" },
+	-- })
 
 	use({ "lewis6991/gitsigns.nvim" })
 
@@ -134,6 +131,7 @@ return require("packer").startup(function(use)
 	use({ "MunifTanjim/nui.nvim" })
 
 	use({ "olekatpyle/xunit.nvim" })
+	use({ "zakissimo/smoji.nvim" })
 
-	use("rcarriga/nvim-notify")
+	-- use("rcarriga/nvim-notify")
 end)
