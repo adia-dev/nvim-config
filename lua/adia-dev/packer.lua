@@ -134,4 +134,5 @@ return require("packer").startup(function(use)
 	use({ "zakissimo/smoji.nvim" })
 
 	-- use("rcarriga/nvim-notify")
+	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
 end)

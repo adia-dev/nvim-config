@@ -49,3 +49,8 @@ keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 
 keymap.set("n", "<leader>cc", ":cclose<CR>")
+
+keymap.set("n", "<leader><Left>", ":vertical resize +2<CR>")
+keymap.set("n", "<leader><Right>", ":vertical resize -2<CR>")
+keymap.set("n", "<leader><Up>", ":resize +2<CR>")
+keymap.set("n", "<leader><Down>", ":resize -2<CR>")
