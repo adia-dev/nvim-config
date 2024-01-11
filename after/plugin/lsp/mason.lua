@@ -23,3 +23,8 @@ require("mason-null-ls").setup({
 		"eslint_d",
 	},
 })
+
+require("mason-nvim-dap").setup({
+	ensure_installed = { "codelldb" },
+	handlers = {},
+})
