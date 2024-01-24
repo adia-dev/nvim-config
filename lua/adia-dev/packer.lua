@@ -129,10 +129,12 @@ return require("packer").startup(function(use)
 
 	use({ "folke/noice.nvim" })
 	use({ "MunifTanjim/nui.nvim" })
+	-- use("rcarriga/nvim-notify")
 
 	use({ "olekatpyle/xunit.nvim" })
 	use({ "zakissimo/smoji.nvim" })
 
-	-- use("rcarriga/nvim-notify")
 	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
+	use({ "catppuccin/nvim", as = "catppuccin" })
 end)
