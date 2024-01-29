@@ -49,3 +49,8 @@ opt.updatetime = 50
 vim.g.netrw_preview = 1
 vim.g.netrw_winsize = 30
 vim.g.netrw_keepdir = 0
+
+-- lsp_lines takes over
+vim.diagnostic.config({
+  virtual_text = false,
+})

@@ -43,6 +43,7 @@ return require("packer").startup(function(use)
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-lua/plenary.nvim")
 	use("mbbill/undotree")
 
@@ -116,7 +117,7 @@ return require("packer").startup(function(use)
 
 	use({ "akinsho/toggleterm.nvim", tag = "*" })
 
-	use '~/Projects/Dev/lua/cpy_buffers.nvim'
+	use("~/Projects/Dev/lua/cpy_buffers.nvim")
 
 	-- use({
 	-- 	"adia-dev/cpy_buffers.nvim",
@@ -137,4 +138,12 @@ return require("packer").startup(function(use)
 	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
 	use({ "catppuccin/nvim", as = "catppuccin" })
+
+	use("folke/zen-mode.nvim")
+
+	use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
+
+	use({ "dgagn/diagflow.nvim" })
+
+	use({ "folke/trouble.nvim" })
 end)
