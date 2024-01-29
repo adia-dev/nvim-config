@@ -143,7 +143,7 @@ return require("packer").startup(function(use)
 
 	use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
-	use({ "dgagn/diagflow.nvim" })
+	-- use({ "dgagn/diagflow.nvim" })
 
 	use({ "folke/trouble.nvim" })
 end)
