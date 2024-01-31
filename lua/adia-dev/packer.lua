@@ -141,9 +141,8 @@ return require("packer").startup(function(use)
 
 	use("folke/zen-mode.nvim")
 
-	use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
+	-- use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
-	-- use({ "dgagn/diagflow.nvim" })
 
 	use({ "folke/trouble.nvim" })
 end)
