@@ -143,6 +143,10 @@ return require("packer").startup(function(use)
 
 	-- use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
-
 	use({ "folke/trouble.nvim" })
+
+	use({
+		"wthollingsworth/pomodoro.nvim",
+		requires = "MunifTanjim/nui.nvim",
+	})
 end)

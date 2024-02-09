@@ -54,7 +54,7 @@ local config = {
 		lualine_y = {},
 		lualine_z = {},
 		-- These will be filled later
-		lualine_c = {},
+		lualine_c = { "filename", require("pomodoro").statusline },
 		lualine_x = {
 			{
 				require("noice").api.statusline.mode.get,

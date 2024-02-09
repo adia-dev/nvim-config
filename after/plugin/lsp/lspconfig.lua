@@ -26,17 +26,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Enable completion triggered by <c-x><c-o>
 		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
+        vim.lsp.inlay_hint.enable(0, true)
+
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
 		vim.keymap.set("n", "gr", "<CMD>Telescope lsp_references<CR>", opts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-		if client.name == "omnisharp" then
+		if client and client.name == "omnisharp" then
 			local omnisharp_opts = { buffer = bufnr }
-			vim.keymap.set("n", "gd", require("omnisharp_extended").lsp_definitions, omnisharp_opts)
-		else
-			vim.keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts)
+			vim.keymap.set("n", "gd", require("omnisharp_extended").lsp_definitions, omnisharp_opts) else
+			vim.keymap.set("n", "gd", "<CMD>Lspsaga peek_definition<CR>", opts)
 		end
 
 		vim.keymap.set("n", "K", "<CMD>Lspsaga hover_doc<CR>", opts)
@@ -46,6 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+		vim.keymap.set("n", "<leader>wo", "<CMD>:Lspsaga outline<CR>", opts)
 		vim.keymap.set("n", "<leader>o", "<CMD>OrganizeImports<CR>", opts)
 		vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 		vim.keymap.set("n", "<leader>wl", function()
@@ -134,6 +136,7 @@ lspconfig.taplo.setup({
 })
 lspconfig.kotlin_language_server.setup({
 	capabilities = capabilities,
+	storagePath = "/Users/adiadev/repos/kotlin-language-server/storage",
 })
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -146,7 +149,11 @@ lspconfig.rust_analyzer.setup({
 	-- Server-specific settings. See `:help lspconfig-setup`
 	capabilities = capabilities,
 	settings = {
-		["rust-analyzer"] = {},
+		-- ["rust-analyzer"] = {
+            -- diagnostic = {
+                -- enable = true
+            -- }
+        -- },
 	},
 })
 
@@ -191,4 +198,3 @@ lspconfig.omnisharp.setup({
 	-- true
 	analyze_open_documents_only = false,
 })
-
