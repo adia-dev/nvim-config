@@ -7,146 +7,154 @@ augroup end
 ]])
 
 return require("packer").startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
-	use("navarasu/onedark.nvim")
+    -- Load and manage Packer itself
+    use("wbthomason/packer.nvim")
 
-	use("christoomey/vim-tmux-navigator")
-	use("szw/vim-maximizer")
+    -- Theme
+    use("navarasu/onedark.nvim")
 
-	use({ "nvim-telescope/telescope.nvim", tag = "0.1.4", requires = { { "nvim-lua/plenary.nvim" } } })
-	use({
-		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	})
+    -- Navigation
+    use("christoomey/vim-tmux-navigator")
+    use("szw/vim-maximizer")
 
-	use({ "stevearc/dressing.nvim" })
+    -- Telescope for fuzzy finding
+    use({
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.4",
+        requires = { { "nvim-lua/plenary.nvim" } },
+    })
+    use({
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run =
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+    })
 
-	use({
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
-	})
+    -- UI
+    -- use({ "stevearc/dressing.nvim" })
 
-	use({
-		"nvimdev/lspsaga.nvim",
-		after = "nvim-lspconfig",
-	})
+    -- LSP and related
+    use({
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    })
+    use({
+        "nvimdev/lspsaga.nvim",
+        after = "nvim-lspconfig",
+    })
+    use({
+        "antosha417/nvim-lsp-file-operations",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-tree.lua",
+        },
+    })
 
-	use({
-		"antosha417/nvim-lsp-file-operations",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-tree.lua",
-		},
-	})
+    -- Treesitter
+    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+    use("nvim-treesitter/playground")
+    use("nvim-treesitter/nvim-treesitter-textobjects")
 
-	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-	use("nvim-treesitter/playground")
-	use("nvim-treesitter/nvim-treesitter-textobjects")
-	use("nvim-lua/plenary.nvim")
-	use("mbbill/undotree")
+    -- Undo tree
+    use("mbbill/undotree")
 
-	use("nvim-tree/nvim-tree.lua")
-	use("nvim-tree/nvim-web-devicons")
+    -- File explorer
+    use("nvim-tree/nvim-tree.lua")
+    use("nvim-tree/nvim-web-devicons")
 
-	-- GoaTPope
-	use("tpope/vim-fugitive")
-	use("tpope/vim-commentary")
-	use("tpope/vim-dadbod")
-	use("tpope/vim-abolish")
+    -- Git
+    use("tpope/vim-fugitive")
+    use("tpope/vim-commentary")
+    use("tpope/vim-dadbod")
+    use("tpope/vim-abolish")
 
-	use({
-		"kylechui/nvim-surround",
-		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	})
+    -- Surround
+    use({
+        "kylechui/nvim-surround",
+        tag = "*",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
+    })
 
-	use("nvim-lualine/lualine.nvim")
-	use("andweeb/presence.nvim")
-	-- use("JoosepAlviste/nvim-ts-context-commentstring")
+    -- Status line
+    use("nvim-lualine/lualine.nvim")
+    use("andweeb/presence.nvim")
 
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+    -- Autopairs
+    use({
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup({})
+        end,
+    })
 
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		setup = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
-	})
+    -- Markdown preview
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    })
 
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
+    -- Completion
+    use("hrsh7th/nvim-cmp")
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-buffer")
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-cmdline")
 
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
-	use("rafamadriz/friendly-snippets")
+    -- Snippets
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
+    use("rafamadriz/friendly-snippets")
 
-	use("segeljakt/vim-silicon")
-	use("folke/tokyonight.nvim")
+    -- Image previews
+    use("segeljakt/vim-silicon")
 
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jayp0521/mason-null-ls.nvim")
+    -- Theme
+    use("folke/tokyonight.nvim")
 
-	use("Civitasv/cmake-tools.nvim")
-	use({ "jay-babu/mason-nvim-dap.nvim" })
-	use("mfussenegger/nvim-dap")
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-	use("theHamsta/nvim-dap-virtual-text")
+    -- LSP
+    use("jose-elias-alvarez/null-ls.nvim")
+    use("jayp0521/mason-null-ls.nvim")
+    use("Civitasv/cmake-tools.nvim")
+    use({ "jay-babu/mason-nvim-dap.nvim" })
+    use("mfussenegger/nvim-dap")
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+    use("theHamsta/nvim-dap-virtual-text")
+    use("tikhomirov/vim-glsl")
+    use({
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        "Badhi/nvim-treesitter-cpp-tools",
+    })
+    use("Hoffs/omnisharp-extended-lsp.nvim")
 
-	use("tikhomirov/vim-glsl")
-	use({
-		requires = { "nvim-treesitter/nvim-treesitter" },
-		"Badhi/nvim-treesitter-cpp-tools",
-	})
-	use("Hoffs/omnisharp-extended-lsp.nvim")
+    -- Terminal
+    use({ "akinsho/toggleterm.nvim", tag = "*" })
 
-	use({ "akinsho/toggleterm.nvim", tag = "*" })
+    -- Custom plugins
+    use("~/Projects/Dev/lua/cpy_buffers.nvim")
+    use({ "lewis6991/gitsigns.nvim" })
+    use({ "rose-pine/neovim", as = "rose-pine" })
+    use({ "folke/noice.nvim" })
+    use({ "MunifTanjim/nui.nvim" })
+    use({ "zakissimo/smoji.nvim" })
 
-	use("~/Projects/Dev/lua/cpy_buffers.nvim")
+    -- Miscellaneous
+    use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use("folke/zen-mode.nvim")
+    use({ "folke/trouble.nvim" })
 
-	-- use({
-	-- 	"adia-dev/cpy_buffers.nvim",
-	-- 	requires = { "nvim-telescope/telescope.nvim" },
-	-- })
-
-	use({ "lewis6991/gitsigns.nvim" })
-
-	use({ "rose-pine/neovim", as = "rose-pine" })
-
-	use({ "folke/noice.nvim" })
-	use({ "MunifTanjim/nui.nvim" })
-	-- use("rcarriga/nvim-notify")
-
-	use({ "olekatpyle/xunit.nvim" })
-	use({ "zakissimo/smoji.nvim" })
-
-	use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
-
-	use({ "catppuccin/nvim", as = "catppuccin" })
-
-	use("folke/zen-mode.nvim")
-
-	-- use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
-
-	use({ "folke/trouble.nvim" })
-
-	use({
-		"wthollingsworth/pomodoro.nvim",
-		requires = "MunifTanjim/nui.nvim",
-	})
+    use({
+        "wojciech-kulik/xcodebuild.nvim",
+        requires = {
+            "nvim-telescope/telescope.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-tree.lua", -- if you want the integration with file tree
+        },
+    })
 end)

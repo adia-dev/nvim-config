@@ -42,7 +42,7 @@ keymap.set("n", "<leader>sx", ":close<CR>")
 
 keymap.set("n", "<leader>so", ":so<CR>")
 
-keymap.set("n", "<leader>s", '"zyiw :%s/<C-r>z/<C-r>z/g<Left><Left>')
+keymap.set("n", "<leader>ss", '"zyiw :%s/<C-r>z/<C-r>z/g<Left><Left>')
 
 keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
