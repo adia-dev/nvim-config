@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
     })
 
     -- UI
-    -- use({ "stevearc/dressing.nvim" })
+    use({ "stevearc/dressing.nvim" })
 
     -- LSP and related
     use({
@@ -49,6 +49,7 @@ return require("packer").startup(function(use)
             "nvim-tree/nvim-tree.lua",
         },
     })
+    use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })

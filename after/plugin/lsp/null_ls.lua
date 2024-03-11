@@ -12,6 +12,7 @@ null_ls.setup({
         formatting.zigfmt,
         formatting.swiftformat,
         formatting.swiftlint,
+        formatting.mix,
 
         -- code_actions.cspell,
         code_actions.proselint,
@@ -22,7 +23,9 @@ null_ls.setup({
 
         diagnostics.actionlint,
         -- diagnostics.cspell,
+        diagnostics.hadolint,
         diagnostics.eslint_d,
         diagnostics.swiftlint,
+        diagnostics.credo,
     },
 })
