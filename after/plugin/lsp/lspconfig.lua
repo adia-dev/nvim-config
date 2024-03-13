@@ -141,6 +141,9 @@ lspconfig.elixirls.setup({
 lspconfig.dockerls.setup({
     capabilities = capabilities,
 })
+lspconfig.glsl_analyzer.setup({
+    capabilities = capabilities,
+})
 lspconfig.taplo.setup({
     capabilities = capabilities,
 })
@@ -182,6 +185,7 @@ lspconfig.omnisharp.setup({
 })
 
 lspconfig["sourcekit"].setup({
+    filetypes = { "swift" },
     capabilities = capabilities,
     cmd = { "xcrun", "sourcekit-lsp" },
     root_dir = function(filename, _)
