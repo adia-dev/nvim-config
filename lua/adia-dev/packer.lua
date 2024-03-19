@@ -124,7 +124,7 @@ return require("packer").startup(function(use)
     use("Civitasv/cmake-tools.nvim")
     use({ "jay-babu/mason-nvim-dap.nvim" })
     use("mfussenegger/nvim-dap")
-    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
     use("theHamsta/nvim-dap-virtual-text")
     use("tikhomirov/vim-glsl")
     use({
