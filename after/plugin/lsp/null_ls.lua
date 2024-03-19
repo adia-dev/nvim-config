@@ -14,9 +14,11 @@ null_ls.setup({
         formatting.swiftlint,
         formatting.clang_format,
         formatting.mix,
+        formatting.erb_format,
+        formatting.markdown_toc,
 
         -- code_actions.cspell,
-        code_actions.proselint,
+        -- code_actions.proselint,
         -- code_actions.gitsigns,
         code_actions.xo,
 
@@ -28,6 +30,7 @@ null_ls.setup({
         diagnostics.eslint_d,
         diagnostics.swiftlint,
         diagnostics.credo,
+        diagnostics.rubocop,
         -- diagnostics.cppcheck,
     },
 })

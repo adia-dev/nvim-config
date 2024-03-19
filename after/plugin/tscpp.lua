@@ -1,7 +1,7 @@
 require("nt-cpp-tools").setup({
     preview = {
         quit = "q",                        -- optional keymapping for quit preview
-        accept = "<CR>",                  -- optional keymapping for accept preview
+        accept = "<CR>",                   -- optional keymapping for accept preview
     },
     header_extension = "h",                -- optional
     source_extension = "cxx",              -- optional
@@ -19,4 +19,3 @@ require("nt-cpp-tools").setup({
         ]]
     },
 })
-

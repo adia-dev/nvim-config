@@ -137,7 +137,7 @@ return require("packer").startup(function(use)
     use({ "akinsho/toggleterm.nvim", tag = "*" })
 
     -- Custom plugins
-    use("~/Projects/Dev/lua/cpy_buffers.nvim")
+    use("adia-dev/cpy_buffers.nvim")
     use({ "lewis6991/gitsigns.nvim" })
     use({ "rose-pine/neovim", as = "rose-pine" })
     use({ "folke/noice.nvim" })
@@ -157,5 +157,25 @@ return require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
             "nvim-tree/nvim-tree.lua", -- if you want the integration with file tree
         },
+    })
+    use({
+        "nvim-neorg/neorg",
+        config = function()
+            require("neorg").setup({
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.dirman"] = { -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/notes",
+                            },
+                        },
+                    },
+                },
+            })
+        end,
+        run = ":Neorg sync-parsers",
+        requires = "nvim-lua/plenary.nvim",
     })
 end)

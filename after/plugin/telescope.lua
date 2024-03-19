@@ -3,12 +3,12 @@ local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 
 require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = { ["<c-q>"] = trouble.open_with_trouble },
-			n = { ["<c-q>"] = trouble.open_with_trouble },
-		},
-	},
+    defaults = {
+        mappings = {
+            i = { ["<c-q>"] = trouble.open_with_trouble },
+            n = { ["<c-q>"] = trouble.open_with_trouble },
+        },
+    },
 })
 
 local builtin = require("telescope.builtin")
@@ -18,7 +18,7 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fs", builtin.git_files, {})
 vim.keymap.set("n", "<leader>fp", builtin.grep_string, {})
 vim.keymap.set("n", "<leader>fr", function()
-	builtin.grep_string({ search = vim.fn.getreg('"') })
+    builtin.grep_string({ search = vim.fn.getreg('"') })
 end)
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})

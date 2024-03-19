@@ -134,6 +134,9 @@ lspconfig.cmake.setup({
 lspconfig.docker_compose_language_service.setup({
     capabilities = capabilities,
 })
+lspconfig.ruby_ls.setup({
+    capabilities = capabilities,
+})
 lspconfig.elixirls.setup({
     cmd = { "elixir-ls" },
     capabilities = capabilities,
