@@ -22,7 +22,7 @@ require("lspsaga").setup({
 		},
 	},
 	rename = {
-		in_select = false,
+		in_select = true,
 		auto_save = true,
 		keys = {
 			quit = { "<ESC>" },

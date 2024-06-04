@@ -27,11 +27,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        if client and (client.name == "sourcekit" or client.name == "null-ls") then
-            vim.lsp.inlay_hint.enable(ev.buf, false)
-        else
-            vim.lsp.inlay_hint.enable(ev.buf, true)
-        end
+        -- if client and (client.name == "sourcekit" or client.name == "null-ls") then
+        --     vim.lsp.inlay_hint.enable(ev.buf, false)
+        -- else
+        --     vim.lsp.inlay_hint.enable(ev.buf, true)
+        -- end
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -134,9 +134,9 @@ lspconfig.cmake.setup({
 lspconfig.docker_compose_language_service.setup({
     capabilities = capabilities,
 })
-lspconfig.ruby_ls.setup({
-    capabilities = capabilities,
-})
+-- lspconfig.ruby_ls.setup({
+--     capabilities = capabilities,
+-- })
 lspconfig.elixirls.setup({
     cmd = { "elixir-ls" },
     capabilities = capabilities,
@@ -148,6 +148,9 @@ lspconfig.glsl_analyzer.setup({
     capabilities = capabilities,
 })
 lspconfig.taplo.setup({
+    capabilities = capabilities,
+})
+lspconfig.gopls.setup({
     capabilities = capabilities,
 })
 lspconfig.kotlin_language_server.setup({
@@ -184,7 +187,7 @@ lspconfig.omnisharp.setup({
     organize_imports_on_format = true,
     enable_import_completion = true,
     sdk_include_prereleases = true,
-    analyze_open_documents_only = false,
+    analyze_open_documents_only = true,
 })
 
 lspconfig["sourcekit"].setup({

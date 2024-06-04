@@ -57,3 +57,19 @@ keymap.set("n", "<leader><Left>", ":vertical resize +2<CR>")
 keymap.set("n", "<leader><Right>", ":vertical resize -2<CR>")
 keymap.set("n", "<leader><Up>", ":resize +2<CR>")
 keymap.set("n", "<leader><Down>", ":resize -2<CR>")
+
+local opacity_state = true
+local function toggle_opacity()
+  if opacity_state then
+    vim.cmd("silent !alacritty msg config window.opacity=0.75")
+    opacity_state = false
+  else
+    vim.cmd("silent !alacritty msg config window.opacity=1.0")
+    opacity_state = true
+  end
+end
+
+keymap.set("n", "<leader>ot", toggle_opacity, { desc = "Toggle Alacritty opacity between 75% and 100%" })
+
+-- Open in Neovide
+keymap.set("n", "<leader>nv", ":!neovide .<CR>")

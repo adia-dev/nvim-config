@@ -148,7 +148,7 @@ return require("packer").startup(function(use)
     use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
     use({ "catppuccin/nvim", as = "catppuccin" })
     use("folke/zen-mode.nvim")
-    use({ "folke/trouble.nvim" })
+    -- use({ "folke/trouble.nvim" })
 
     use({
         "wojciech-kulik/xcodebuild.nvim",
@@ -158,24 +158,6 @@ return require("packer").startup(function(use)
             "nvim-tree/nvim-tree.lua", -- if you want the integration with file tree
         },
     })
-    use({
-        "nvim-neorg/neorg",
-        config = function()
-            require("neorg").setup({
-                load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.dirman"] = { -- Manages Neorg workspaces
-                        config = {
-                            workspaces = {
-                                notes = "~/notes",
-                            },
-                        },
-                    },
-                },
-            })
-        end,
-        run = ":Neorg sync-parsers",
-        requires = "nvim-lua/plenary.nvim",
-    })
+
+    use('norcalli/nvim-colorizer.lua')
 end)
