@@ -158,6 +158,10 @@ lspconfig.kotlin_language_server.setup({
     storagePath = "/Users/adiadev/repos/kotlin-language-server/storage",
 })
 
+lspconfig.jdtls.setup({
+    capabilities = capabilities,
+})
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
 

@@ -16,6 +16,9 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 
+-- conceallevel
+opt.conceallevel = 1
+
 -- Line wrapping
 opt.wrap = false
 
@@ -62,38 +65,5 @@ vim.g.netrw_keepdir = 0
 
 -- Diagnostic settings
 vim.diagnostic.config({
-  virtual_text = false,
-})
-
--- Whitespace display settings
-opt.list = true
-
-local space = "·"
-opt.listchars:append({
-  tab = "░ ",
-  multispace = space,
-  lead = space,
-  trail = space,
-  nbsp = space,
-  extends = '»',
-  precedes = '«'
-})
-
--- Highlight trailing whitespace
-cmd([[match TrailingWhitespace /\s\+$/]])
-nvim_set_hl(0, "TrailingWhitespace", { fg = "#FF0000", bg = "#1E1E1E" })
-
--- Autocommands to handle trailing whitespace highlighting in insert mode
-nvim_create_autocmd("InsertEnter", {
-  callback = function()
-    opt.listchars.trail = nil
-    nvim_set_hl(0, "TrailingWhitespace", { link = "Whitespace" })
-  end
-})
-
-nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    opt.listchars.trail = space
-    nvim_set_hl(0, "TrailingWhitespace", { fg = "#FF0000", bg = "#1E1E1E" })
-  end
+    virtual_text = false,
 })

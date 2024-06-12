@@ -16,6 +16,7 @@ null_ls.setup({
         formatting.mix,
         formatting.erb_format,
         formatting.markdown_toc,
+        formatting.xmlformat,
 
         -- code_actions.cspell,
         -- code_actions.proselint,
