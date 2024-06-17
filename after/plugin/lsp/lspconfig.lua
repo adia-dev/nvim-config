@@ -168,17 +168,33 @@ local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
 lspconfig.cssls.setup({
     capabilities = cssls_capabilities,
 })
+
 lspconfig.rust_analyzer.setup({
-    -- Server-specific settings. See `:help lspconfig-setup`
+    cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
+    -- When using unix domain sockets, use something like:
+    --cmd = vim.lsp.rpc.domain_socket_connect("/path/to/ra-multiplex.sock"),
     capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            diagnostic = {
-                enable = true,
-            },
+    init_options = {
+        lspMux = {
+            version = "1",
+            method = "connect",
+            server = "rust-analyzer",
         },
     },
 })
+
+-- lspconfig.rust_analyzer.setup({
+--     cmd = { "ra-multiplex" },
+--     -- Server-specific settings. See `:help lspconfig-setup`
+--     capabilities = capabilities,
+--     settings = {
+--         ["rust-analyzer"] = {
+--             diagnostic = {
+--                 enable = true,
+--             },
+--         },
+--     },
+-- })
 
 local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/Omnisharp.dll"
 lspconfig.omnisharp.setup({

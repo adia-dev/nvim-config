@@ -121,12 +121,12 @@ return require("packer").startup(function(use)
     -- LSP
     use("jose-elias-alvarez/null-ls.nvim")
     use("jayp0521/mason-null-ls.nvim")
-    use("Civitasv/cmake-tools.nvim")
-    use({ "jay-babu/mason-nvim-dap.nvim" })
-    use("mfussenegger/nvim-dap")
-    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
-    use("theHamsta/nvim-dap-virtual-text")
-    use("tikhomirov/vim-glsl")
+    -- use("Civitasv/cmake-tools.nvim")
+    -- use({ "jay-babu/mason-nvim-dap.nvim" })
+    -- use("mfussenegger/nvim-dap")
+    -- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+    -- use("theHamsta/nvim-dap-virtual-text")
+    -- use("tikhomirov/vim-glsl")
     use({
         requires = { "nvim-treesitter/nvim-treesitter" },
         "Badhi/nvim-treesitter-cpp-tools",
@@ -140,24 +140,23 @@ return require("packer").startup(function(use)
     use("adia-dev/cpy_buffers.nvim")
     use({ "lewis6991/gitsigns.nvim" })
     use({ "rose-pine/neovim", as = "rose-pine" })
-    use({ "folke/noice.nvim" })
-    use({ "MunifTanjim/nui.nvim" })
+    use({ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim" } })
     use({ "zakissimo/smoji.nvim" })
 
     -- Miscellaneous
     use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
     use({ "catppuccin/nvim", as = "catppuccin" })
     use("folke/zen-mode.nvim")
-    -- use({ "folke/trouble.nvim" })
+    use({ "folke/trouble.nvim" })
 
-    use({
-        "wojciech-kulik/xcodebuild.nvim",
-        requires = {
-            "nvim-telescope/telescope.nvim",
-            "MunifTanjim/nui.nvim",
-            "nvim-tree/nvim-tree.lua", -- if you want the integration with file tree
-        },
-    })
+    -- use({
+    --     "wojciech-kulik/xcodebuild.nvim",
+    --     requires = {
+    --         "nvim-telescope/telescope.nvim",
+    --         "MunifTanjim/nui.nvim",
+    --         "nvim-tree/nvim-tree.lua", -- if you want the integration with file tree
+    --     },
+    -- })
 
     use("norcalli/nvim-colorizer.lua")
     use("mfussenegger/nvim-jdtls")
