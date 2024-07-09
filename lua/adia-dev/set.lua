@@ -15,8 +15,10 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
+opt.inccommand = "nosplit"
 
--- conceallevel
+opt.lazyredraw = true
+
 opt.conceallevel = 1
 
 -- Line wrapping
@@ -64,6 +66,6 @@ vim.g.netrw_winsize = 30
 vim.g.netrw_keepdir = 0
 
 -- Diagnostic settings
-vim.diagnostic.config({
-    virtual_text = false,
-})
+-- vim.diagnostic.config({
+--     virtual_text = false,
+-- })

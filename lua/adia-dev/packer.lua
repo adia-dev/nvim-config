@@ -148,6 +148,7 @@ return require("packer").startup(function(use)
     use({ "catppuccin/nvim", as = "catppuccin" })
     use("folke/zen-mode.nvim")
     use({ "folke/trouble.nvim" })
+    use({ "folke/ts-comments.nvim" })
 
     -- use({
     --     "wojciech-kulik/xcodebuild.nvim",
@@ -162,4 +163,8 @@ return require("packer").startup(function(use)
     use("mfussenegger/nvim-jdtls")
 
     use({ "epwalsh/obsidian.nvim", tag = "*", requires = { "nvim-lua/plenary.nvim" } })
+
+    use({ "windwp/nvim-ts-autotag" })
+
+    use({ "terrastruct/d2-vim" })
 end)

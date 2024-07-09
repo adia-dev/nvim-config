@@ -128,6 +128,9 @@ lspconfig.zls.setup({
 lspconfig.emmet_ls.setup({
     capabilities = capabilities,
 })
+lspconfig.tailwindcss.setup({
+    capabilities = capabilities,
+})
 lspconfig.cmake.setup({
     capabilities = capabilities,
 })
@@ -145,6 +148,9 @@ lspconfig.dockerls.setup({
     capabilities = capabilities,
 })
 lspconfig.glsl_analyzer.setup({
+    capabilities = capabilities,
+})
+lspconfig.prismals.setup({
     capabilities = capabilities,
 })
 lspconfig.taplo.setup({

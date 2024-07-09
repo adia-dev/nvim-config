@@ -12,6 +12,7 @@ local new_items = {
     "🤖 - :robot: - AI: When the machine starts to learn.",
     "📜 - :scroll: - Legacy code: Ancient and mysterious.",
     "📊 - :bar_chart: - Optimizing: Because milliseconds matter.",
+    "👨‍🍳 - :cooking: - That brother is cooking"
 }
 
 local function append_items(existing_items, new_items)

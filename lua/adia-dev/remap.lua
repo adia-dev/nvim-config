@@ -61,7 +61,7 @@ keymap.set("n", "<leader><Down>", ":resize -2<CR>")
 local opacity_state = true
 local function toggle_opacity()
   if opacity_state then
-    vim.cmd("silent !alacritty msg config window.opacity=0.75")
+    vim.cmd("silent !alacritty msg config window.opacity=0.50")
     opacity_state = false
   else
     vim.cmd("silent !alacritty msg config window.opacity=1.0")
@@ -69,7 +69,19 @@ local function toggle_opacity()
   end
 end
 
-keymap.set("n", "<leader>ot", toggle_opacity, { desc = "Toggle Alacritty opacity between 75% and 100%" })
+local blur_state = true
+local function toggle_blur()
+  if blur_state then
+    vim.cmd("silent !alacritty msg config window.blur=true")
+    blur_state = false
+  else
+    vim.cmd("silent !alacritty msg config window.blur=false")
+    blur_state = true
+  end
+end
+
+keymap.set("n", "<leader>ot", toggle_opacity, { desc = "Toggle Alacritty opacity between 50% and 100%" })
+keymap.set("n", "<leader>bt", toggle_blur, { desc = "Toggle Alacritty blur (true/false)" })
 
 -- Open in Neovide
 keymap.set("n", "<leader>nv", ":!neovide .<CR>")

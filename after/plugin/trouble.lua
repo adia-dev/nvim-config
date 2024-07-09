@@ -59,6 +59,6 @@ require("trouble").setup(
 )
 
 -- Lua
-vim.keymap.set("n", "<leader>xx", "<CMD>Trouble diagnostics toggle<CR>")
+vim.keymap.set("n", "<leader>tr", "<CMD>Trouble diagnostics toggle<CR>")
 vim.keymap.set("n", "<leader>xs", "<CMD>Trouble symbols toggle focus=false<CR>")
 vim.keymap.set("n", "<leader>xr", "<CMD>Trouble lsp_references toggle<CR>")
