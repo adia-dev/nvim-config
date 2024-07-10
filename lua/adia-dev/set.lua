@@ -17,7 +17,7 @@ opt.autoindent = true
 opt.smartindent = true
 opt.inccommand = "nosplit"
 
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 
 opt.conceallevel = 1
 
