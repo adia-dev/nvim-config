@@ -167,4 +167,15 @@ return require("packer").startup(function(use)
     use({ "windwp/nvim-ts-autotag" })
 
     use({ "terrastruct/d2-vim" })
+
+    -- Packer
+    use({
+        "crnvl96/lazydocker.nvim",
+        config = function()
+            require("lazydocker").setup()
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+        },
+    })
 end)
