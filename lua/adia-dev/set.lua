@@ -1,8 +1,5 @@
 local opt = vim.opt
-local cmd = vim.cmd
 local api = vim.api
-local nvim_create_autocmd = api.nvim_create_autocmd
-local nvim_set_hl = api.nvim_set_hl
 
 -- General settings
 opt.relativenumber = true
@@ -19,7 +16,7 @@ opt.inccommand = "nosplit"
 
 -- opt.lazyredraw = true
 
-opt.conceallevel = 1
+opt.conceallevel = 2
 
 -- Line wrapping
 opt.wrap = false
@@ -69,3 +66,11 @@ vim.g.netrw_keepdir = 0
 -- vim.diagnostic.config({
 --     virtual_text = false,
 -- })
+
+-- Clear the Conceal highlight group
+api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    callback = function()
+        vim.cmd("hi clear Conceal")
+    end,
+})

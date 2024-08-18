@@ -50,6 +50,7 @@ return require("packer").startup(function(use)
         },
     })
     use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
+    use("https://github.com/scalameta/nvim-metals")
 
     -- Treesitter
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
