@@ -1,4 +1,5 @@
 require("telescope").load_extension("fzf")
+require('telescope').load_extension('dap')
 local actions = require("telescope.actions")
 -- local trouble = require("trouble.providers.telescope")
 

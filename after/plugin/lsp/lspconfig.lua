@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end, opts)
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
         vim.keymap.set("n", "<leader>rn", "<CMD>Lspsaga rename<CR>", opts)
-        vim.keymap.set({ "n", "v" }, "<leader>ca", "<CMD>Lspsaga code_action<CR>", opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>fl", function()
             vim.lsp.buf.format({ async = true })
         end, opts)
@@ -83,7 +83,7 @@ local function organize_imports()
     vim.lsp.buf.execute_command(params)
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
     capabilities = capabilities,
     commands = {
         OrganizeImports = {
@@ -119,6 +119,9 @@ lspconfig.lua_ls.setup({
     },
 })
 lspconfig.clangd.setup({
+    capabilities = capabilities,
+})
+lspconfig.html.setup({
     capabilities = capabilities,
 })
 lspconfig.zls.setup({
@@ -157,6 +160,9 @@ lspconfig.taplo.setup({
     capabilities = capabilities,
 })
 lspconfig.gopls.setup({
+    capabilities = capabilities,
+})
+lspconfig.dartls.setup({
     capabilities = capabilities,
 })
 lspconfig.kotlin_language_server.setup({

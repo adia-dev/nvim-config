@@ -7,18 +7,18 @@ local completion = null_ls.builtins.completion
 
 null_ls.setup({
     sources = {
-        -- code_actions.cspell,
-        -- code_actions.gitsigns,
+        code_actions.cspell,
+        code_actions.gitsigns,
         -- code_actions.proselint,
         -- code_actions.xo,
 
         -- completion.luasnip,
 
         -- -- diagnostics.eslint_d,
-        -- diagnostics.actionlint,
+        diagnostics.actionlint,
         -- diagnostics.cppcheck,
         -- diagnostics.credo,
-        -- diagnostics.cspell,
+        diagnostics.cspell,
         -- diagnostics.hadolint,
         -- diagnostics.rubocop,
         -- diagnostics.swiftlint,
@@ -28,7 +28,7 @@ null_ls.setup({
         -- formatting.erb_format,
         -- formatting.markdown_toc,
         -- formatting.mix,
-        -- formatting.prettier,
+        formatting.prettier,
         -- formatting.stylua,
         -- formatting.swiftformat,
         -- formatting.swiftlint,

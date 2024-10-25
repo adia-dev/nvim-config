@@ -123,10 +123,11 @@ return require("packer").startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim")
     use("jayp0521/mason-null-ls.nvim")
     -- use("Civitasv/cmake-tools.nvim")
-    -- use({ "jay-babu/mason-nvim-dap.nvim" })
-    -- use("mfussenegger/nvim-dap")
-    -- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
-    -- use("theHamsta/nvim-dap-virtual-text")
+    use({ "jay-babu/mason-nvim-dap.nvim" })
+    use("mfussenegger/nvim-dap")
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+    use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim")
     -- use("tikhomirov/vim-glsl")
     use({
         requires = { "nvim-treesitter/nvim-treesitter" },
@@ -179,4 +180,7 @@ return require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
         },
     })
+
+    use('reisub0/hot-reload.vim')
+
 end)
