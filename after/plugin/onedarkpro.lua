@@ -15,10 +15,10 @@ require('onedark').setup  {
     -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
     code_style = {
         comments = 'italic',
-        keywords = 'none',
-        functions = 'none',
-        strings = 'none',
-        variables = 'none'
+        keywords = 'bold,italic',
+        functions = 'italic,bold',
+        strings = 'underline',
+        variables = 'bold'
     },
 
     -- Lualine options --

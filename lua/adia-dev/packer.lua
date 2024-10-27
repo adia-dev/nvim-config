@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
 
     -- Theme
     use("navarasu/onedark.nvim")
+    use({ "rose-pine/neovim", as = "rose-pine" })
 
     -- Navigation
     use("christoomey/vim-tmux-navigator")
@@ -49,6 +50,7 @@ return require("packer").startup(function(use)
             "nvim-tree/nvim-tree.lua",
         },
     })
+
     use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
     use("https://github.com/scalameta/nvim-metals")
 
@@ -64,11 +66,13 @@ return require("packer").startup(function(use)
     use("nvim-tree/nvim-tree.lua")
     use("nvim-tree/nvim-web-devicons")
 
-    -- Git
+    -- GOATPOPE
     use("tpope/vim-fugitive")
     use("tpope/vim-commentary")
     use("tpope/vim-dadbod")
+    use { "kristijanhusak/vim-dadbod-ui", requires = { 'kristijanhusak/vim-dadbod-completion' } }
     use("tpope/vim-abolish")
+
 
     -- Surround
     use({
@@ -81,7 +85,7 @@ return require("packer").startup(function(use)
 
     -- Status line
     use("nvim-lualine/lualine.nvim")
-    use("andweeb/presence.nvim")
+    -- use("andweeb/presence.nvim")
 
     -- Autopairs
     use({
@@ -114,7 +118,7 @@ return require("packer").startup(function(use)
     use("rafamadriz/friendly-snippets")
 
     -- Image previews
-    use("segeljakt/vim-silicon")
+    use { 'mistricky/codesnap.nvim', run = 'make' }
 
     -- Theme
     use("folke/tokyonight.nvim")
@@ -141,13 +145,12 @@ return require("packer").startup(function(use)
     -- Custom plugins
     use("adia-dev/cpy_buffers.nvim")
     use({ "lewis6991/gitsigns.nvim" })
-    use({ "rose-pine/neovim", as = "rose-pine" })
     use({ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim" } })
     use({ "zakissimo/smoji.nvim" })
 
     -- Miscellaneous
     use({ "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } })
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    use { "catppuccin/nvim", as = "catppuccin" }
     use("folke/zen-mode.nvim")
     use({ "folke/trouble.nvim" })
     use({ "folke/ts-comments.nvim" })
@@ -183,4 +186,10 @@ return require("packer").startup(function(use)
 
     use('reisub0/hot-reload.vim')
 
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
+    }
 end)

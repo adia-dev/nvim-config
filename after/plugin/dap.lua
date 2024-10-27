@@ -77,16 +77,6 @@ vim.keymap.set("n", "<Leader>dx", function()
     dapui.close()
 end)
 
--- Save breakpoints to a JSON file
-vim.keymap.set("n", "<Leader>dbs", function()
-    require('dap.breakpoints').save()
-end)
-
--- Load breakpoints from a JSON file
-vim.keymap.set("n", "<Leader>dbl", function()
-    require('dap.breakpoints').load()
-end)
-
 -- --------------------------------------
 -- DAP ADAPTERS AND CONFIGURATIONS
 -- --------------------------------------
