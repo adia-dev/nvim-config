@@ -9,10 +9,10 @@ require("noice").setup({
     },
     -- you can enable a preset for easier configuration
     presets = {
-        bottom_search = false,  -- use a classic bottom cmdline for search
+        bottom_search = false,        -- use a classic bottom cmdline for search
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = true,      -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true,  -- add a border to hover docs and signature help
+        inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = true,        -- add a border to hover docs and signature help
     },
     notify = {
         -- Noice can be used as `vim.notify` so you can route any notification like other messages
@@ -34,13 +34,14 @@ require("noice").setup({
                     { warning = true },
                     { event = "msg_show", kind = { "" } },
                     { event = "lsp",      kind = "message" },
+                    { event = "cmdline",  cmdline = "^:reg" },
                 },
             },
         },
     },
     routes = {
         {
-            view = "popup",
+            view = "split",
             filter = {
                 any = {
                     { cmdline = "^:reg" },
@@ -66,3 +67,5 @@ require("noice").setup({
 })
 
 vim.keymap.set("n", "<leader>me", "<CMD>Noice telescope<CR>")
+require("telescope").load_extension("noice")
+vim.keymap.set("n", "<leader>mr", "<CMD>Telescope registers<CR>", { desc = "Telescope: Show registers" })

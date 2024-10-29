@@ -131,5 +131,5 @@ function SearchInArc()
 end
 
 -- Create a key mapping for visual mode and normal mode to trigger the search function
-vim.api.nvim_set_keymap('v', '<leader>as', ':lua SearchInArc()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>as', ':lua SearchInArc()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>sa', ':lua SearchInArc()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sa', ':lua SearchInArc()<CR>', { noremap = true, silent = true })

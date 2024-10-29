@@ -65,5 +65,8 @@ require("nvim-tree").setup({
     on_attach = my_on_attach,
 })
 
-vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeFindFileToggle<CR>")
-vim.keymap.set("n", "<leader>E", "<CMD>NvimTreeFindFile<CR>")
+-- Open NvimTree or focus on it if already open
+vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeFindFileToggle<CR>", { desc = "Toggle File Tree" })
+
+-- Reveal current file in the NvimTree
+vim.keymap.set("n", "<leader>E", "<CMD>NvimTreeFindFile<CR>", { desc = "Find File in Tree" })

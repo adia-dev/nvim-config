@@ -23,4 +23,4 @@ end
 
 append_items(smoji.items, new_items)
 
-vim.keymap.set("n", "<Leader><Leader>e", "<CMD>Smoji<CR>")
+vim.keymap.set("n", "<Leader><Leader>e", "<CMD>Smoji<CR>", { desc = "😂 Smoji" })

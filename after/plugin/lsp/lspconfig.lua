@@ -12,9 +12,10 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 -- vim.keymap.set("n", "<leader>ww", "<CMD>Lspsaga show_workspace_diagnostics ++normal<CR>")
-vim.keymap.set("n", "<leader>K", "<CMD>Lspsaga diagnostic_jump_prev<CR>")
-vim.keymap.set("n", "<leader>J", "<CMD>Lspsaga diagnostic_jump_next<CR>")
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
+-- Diagnostics navigation
+vim.keymap.set("n", "<leader>K", "<CMD>Lspsaga diagnostic_jump_prev<CR>", { desc = "Previous diagnostic" })
+vim.keymap.set("n", "<leader>J", "<CMD>Lspsaga diagnostic_jump_next<CR>", { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -22,49 +23,46 @@ vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
         local bufnr = ev.buf
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        -- if client and (client.name == "sourcekit" or client.name == "null-ls") then
-        --     vim.lsp.inlay_hint.enable(ev.buf, false)
-        -- else
-        --     vim.lsp.inlay_hint.enable(ev.buf, true)
-        -- end
-
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
-        vim.keymap.set("n", "gr", "<CMD>Lspsaga finder<CR>", opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-        if client and client.name == "omnisharp" then
-            local omnisharp_opts = { buffer = bufnr }
-            vim.keymap.set("n", "gd", require("omnisharp_extended").lsp_definitions, omnisharp_opts)
-        else
-        end
+        -- Code navigation and info
+        vim.keymap.set("n", "gr", "<CMD>Lspsaga finder<CR>", opts) -- Lists references and definitions
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+        vim.keymap.set("n", "gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Go to definition" })
+        vim.keymap.set("n", "K", "<CMD>Lspsaga hover_doc<CR>", { desc = "Hover documentation" })
+        vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", { desc = "List implementations" })
 
-        vim.keymap.set("n", "gd", "<CMD>Lspsaga goto_definition<CR>", opts)
-        vim.keymap.set("n", "K", "<CMD>Lspsaga hover_doc<CR>", opts)
-        vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts)
-        -- vim.keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
-        vim.keymap.set("n", "<leader>gk", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-        vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-        vim.keymap.set("n", "<leader>wo", "<CMD>:Lspsaga outline<CR>", opts)
-        vim.keymap.set("n", "<leader>oi", "<CMD>OrganizeImports<CR>", opts)
-        vim.keymap.set("n", "<leader>rs", "<CMD>LspRestart<CR>", opts)
+        -- Diagnostics and outline
+        vim.keymap.set("n", "<leader>gk", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Open diagnostic float" })
+        vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "Signature help" })
+
+        -- Workspace management
+        vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
+        vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+        vim.keymap.set("n", "<leader>wo", "<CMD>:Lspsaga outline<CR>", { desc = "Toggle outline" })
         vim.keymap.set("n", "<leader>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workleader_folders()))
-        end, opts)
-        vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "<leader>rn", "<CMD>Lspsaga rename<CR>", opts)
-        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, { desc = "List workspace folders" })
+
+        -- Type definitions and renaming
+        vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+        vim.keymap.set("n", "<leader>rn", "<CMD>Lspsaga rename<CR>", { desc = "Rename symbol" })
+
+        -- Code actions
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
         vim.keymap.set("n", "<leader>fl", function()
             vim.lsp.buf.format({ async = true })
-        end, opts)
+        end, { desc = "Format document" })
+
+        -- Custom LSP commands
+        vim.keymap.set("n", "<leader>oi", "<CMD>OrganizeImports<CR>", { desc = "Organize imports" })
+        vim.keymap.set("n", "<leader>rs", "<CMD>LspRestart<CR>", { desc = "Restart LSP" })
     end,
 })
 

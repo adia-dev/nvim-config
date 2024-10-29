@@ -14,7 +14,7 @@ require("which-key").setup({
     },
     window = {
         border = "single",   -- none, single, double, shadow
-        position = "bottom", -- bottom, top
+        position = "top", -- bottom, top
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns

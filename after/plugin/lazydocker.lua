@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<leader>ld", "<CMD>LazyDocker<CR>")
+vim.keymap.set("n", "<leader>ld", "<CMD>LazyDocker<CR>", { desc = "Open LazyDocker" })

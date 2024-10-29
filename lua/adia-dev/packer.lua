@@ -29,6 +29,10 @@ return require("packer").startup(function(use)
         run =
         "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     })
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
 
     -- UI
     use({ "stevearc/dressing.nvim" })
@@ -192,4 +196,5 @@ return require("packer").startup(function(use)
             require("which-key").setup {}
         end
     }
+    use('junegunn/vim-peekaboo')
 end)
