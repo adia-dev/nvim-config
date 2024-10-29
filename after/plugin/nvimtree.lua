@@ -61,6 +61,7 @@ require("nvim-tree").setup({
     },
     filters = {
         dotfiles = true,
+        exclude = { ".config", ".local", ".gitignore", ".env" },
     },
     on_attach = my_on_attach,
 })
@@ -70,3 +71,10 @@ vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeFindFileToggle<CR>", { desc = "To
 
 -- Reveal current file in the NvimTree
 vim.keymap.set("n", "<leader>E", "<CMD>NvimTreeFindFile<CR>", { desc = "Find File in Tree" })
+
+vim.cmd([[
+    :hi      NvimTreeExecFile    guifg=#ffa0a0
+    :hi      NvimTreeSpecialFile guifg=#ff80ff gui=underline
+    :hi      NvimTreeSymlink     guifg=Yellow  gui=italic
+    :hi link NvimTreeImageFile   Title
+]])

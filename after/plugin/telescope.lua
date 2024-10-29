@@ -1,16 +1,5 @@
 require("telescope").load_extension("fzf")
 require('telescope').load_extension('dap')
-local actions = require("telescope.actions")
--- local trouble = require("trouble.providers.telescope")
-
--- require("telescope").setup({
---     defaults = {
---         mappings = {
---             i = { ["<c-t>"] = trouble.open_with_trouble },
---             n = { ["<c-t>"] = trouble.open_with_trouble },
---         },
---     },
--- })
 
 local builtin = require("telescope.builtin")
 
@@ -29,7 +18,7 @@ vim.keymap.set("n", "<leader>gfc", builtin.git_bcommits, { desc = "Git file comm
 vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
 
 vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last search" })
-vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Command history" })
+vim.keymap.set("n", "<leader>fv", builtin.command_history, { desc = "Command history" })
 vim.keymap.set("n", "<leader>fsh", builtin.search_history, { desc = "Search history" })
 vim.keymap.set("n", "<leader>fw", function()
     builtin.grep_string({ search = vim.fn.expand("<cword>") })
