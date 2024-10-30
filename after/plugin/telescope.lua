@@ -19,7 +19,6 @@ vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" 
 
 vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last search" })
 vim.keymap.set("n", "<leader>fv", builtin.command_history, { desc = "Command history" })
-vim.keymap.set("n", "<leader>fsh", builtin.search_history, { desc = "Search history" })
 vim.keymap.set("n", "<leader>fw", function()
     builtin.grep_string({ search = vim.fn.expand("<cword>") })
 end, { desc = "Grep word under cursor" })
