@@ -1,12 +1,3 @@
-local blink = true
-local timer = vim.loop.new_timer()
-
--- Blinking every seconds to reming my dumbass that I am recording a macro
-timer:start(0, 1000, vim.schedule_wrap(function()
-    blink = not blink
-    vim.cmd('redrawstatus')
-end))
-
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -20,11 +11,6 @@ require("lualine").setup({
         ignore_focus = {},
         always_divide_middle = true,
         globalstatus = false,
-        refresh = {
-            statusline = 200, -- Refresh the status line every 200ms
-            tabline = 200,
-            winbar = 200,
-        },
     },
     sections = {
         lualine_a = { "mode" },
@@ -44,13 +30,7 @@ require("lualine").setup({
                 cond = function()
                     return vim.fn.reg_recording() ~= ''
                 end,
-                color = function()
-                    if blink then
-                        return { fg = '#ff0000', gui = 'bold' } -- Blinking red
-                    else
-                        return { fg = '#000000', gui = 'bold' } -- Invisible to simulate blink
-                    end
-                end,
+                color = { fg = '#ff0000', gui = 'bold' }
             },
             -- {
             --     -- Last yanked preview component
@@ -142,11 +122,3 @@ require("lualine").setup({
     inactive_winbar = {},
     extensions = {},
 })
-
--- Autocommand to periodically refresh the status line to ensure consistent blinking
-vim.cmd([[
-  augroup LualineBlink
-    autocmd!
-    autocmd CursorHold,CursorHoldI * redrawstatus
-  augroup END
-]])
