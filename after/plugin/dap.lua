@@ -157,15 +157,50 @@ dap.configurations.cpp = {
 
 dap.configurations.zig = {
     {
-        name = 'Launch',
-        type = 'lldb',
-        request = 'launch',
+        name = "Launch file",
+        type = "lldb",
+        request = "launch",
         program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin", "file")
+            local pickers = require('telescope.pickers')
+            local finders = require('telescope.finders')
+            local actions = require('telescope.actions')
+            local action_state = require('telescope.actions.state')
+            local conf = require('telescope.config').values
+
+            return coroutine.create(function(coro)
+                pickers.new({}, {
+                    prompt_title = 'Select Executable',
+                    finder = finders.new_oneshot_job(
+                        { 'find', vim.fn.getcwd() .. "/zig-out", '-type', 'f', '-perm', '+111' },
+                        { cwd = vim.fn.getcwd() }
+                    ),
+                    sorter = conf.generic_sorter({}),
+                    attach_mappings = function(prompt_bufnr, map)
+                        actions.select_default:replace(function()
+                            local selection = action_state.get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            coroutine.resume(coro, selection.value)
+                        end)
+                        return true
+                    end,
+                }):find()
+            end)
         end,
-        cwd = '${workspaceFolder}',
+        cwd = "${workspaceFolder}",
         stopOnEntry = false,
-        args = {},
+        args = function()
+            local args = {}
+            print("Enter each argument separately. Press Enter without typing anything to finish.")
+            while true do
+                local arg = vim.fn.input("Argument: ")
+                if arg == "" then
+                    break
+                end
+                table.insert(args, arg)
+            end
+            return args
+        end,
+        console = "integratedTerminal", -- Add this line
     },
 }
 

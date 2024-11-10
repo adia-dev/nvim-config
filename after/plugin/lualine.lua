@@ -19,6 +19,18 @@ require("lualine").setup({
             "filename",
             "filetype",
             {
+                'diagnostics',
+                sources = {'nvim_diagnostic'},
+                sections = {'error', 'warn'},
+                symbols = {
+                    error = ' ', -- Error icon
+                    warn  = ' ', -- Warning icon
+                },
+                colored = true,
+                update_in_insert = false,
+                always_visible = false,
+            },
+            {
                 -- Recording status with blinking effect
                 function()
                     local recording = vim.fn.reg_recording()
@@ -32,32 +44,16 @@ require("lualine").setup({
                 end,
                 color = { fg = '#ff0000', gui = 'bold' }
             },
-            -- {
-            --     -- Last yanked preview component
-            --     function()
-            --         local yanked_content = vim.fn.getreg('"'):gsub('%s+', ' ') -- Trim whitespace
-            --         yanked_content = vim.trim(yanked_content)                  -- Remove leading/trailing whitespace
-
-            --         if yanked_content == '' then
-            --             return '📋: (empty)'
-            --         end
-
-            --         if #yanked_content > 30 then
-            --             return '📋: ' .. yanked_content:sub(1, 27) .. '...'
-            --         else
-            --             return '📋: ' .. yanked_content
-            --         end
-            --     end,
-            --     cond = function()
-            --         return vim.fn.getreg('"') ~= ''
-            --     end,
-            --     color = { fg = '#cccccc', gui = 'bold' }, -- Grey color for visibility
-            -- },
         },
         lualine_c = {
             {
                 function()
-                    local blame = vim.fn.system('git blame -L ' .. vim.fn.line('.') .. ',+1 -- ' .. vim.fn.expand('%'))
+                    local blame = vim.fn.system(
+                        'git blame -L '
+                            .. vim.fn.line('.')
+                            .. ',+1 -- '
+                            .. vim.fn.expand('%')
+                    )
                     local author = blame:match('%((.-)%)')
                     if author then
                         return ' ' .. author
@@ -65,7 +61,7 @@ require("lualine").setup({
                     return ''
                 end,
                 color = { fg = '#aaaaaa', gui = 'italic' },
-            }
+            },
         },
         lualine_x = {
             {
@@ -96,7 +92,7 @@ require("lualine").setup({
                 end,
                 icon = ' LSP:',
                 color = { fg = '#ffffff', gui = 'bold' },
-            }
+            },
         },
         lualine_y = {
             {

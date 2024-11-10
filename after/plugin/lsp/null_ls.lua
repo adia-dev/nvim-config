@@ -19,7 +19,7 @@ null_ls.setup({
         diagnostics.cppcheck,
         diagnostics.cpplint,
         -- diagnostics.credo,
-        diagnostics.cspell,
+        -- diagnostics.cspell,
         -- diagnostics.hadolint,
         -- diagnostics.rubocop,
         -- diagnostics.swiftlint,
