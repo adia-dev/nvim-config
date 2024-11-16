@@ -17,7 +17,7 @@ null_ls.setup({
         -- -- diagnostics.eslint_d,
         diagnostics.actionlint,
         diagnostics.cppcheck,
-        diagnostics.cpplint,
+        -- diagnostics.cpplint,
         -- diagnostics.credo,
         -- diagnostics.cspell,
         -- diagnostics.hadolint,

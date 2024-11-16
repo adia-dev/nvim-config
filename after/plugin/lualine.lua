@@ -4,63 +4,45 @@ require("lualine").setup({
         theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-        },
+        disabled_filetypes = { statusline = {}, winbar = {} },
         ignore_focus = {},
         always_divide_middle = true,
         globalstatus = false,
     },
     sections = {
-        lualine_a = { "mode" },
+        lualine_a = {
+            "mode",
+            {
+                function()
+                    if vim.fn.mode() == 'n' and vim.fn.searchcount({ 'all' }).total > 0 then
+                        return '🔍 Search'
+                    end
+                    return ''
+                end,
+                color = { fg = '#ff4500', gui = 'bold' },
+            },
+        },
         lualine_b = {
             "branch",
             "filename",
-            "filetype",
+            {
+                "filetype",
+                icon_only = true,
+                color = { fg = '#ffffff', gui = 'bold' },
+            },
             {
                 'diagnostics',
-                sources = {'nvim_diagnostic'},
-                sections = {'error', 'warn'},
-                symbols = {
-                    error = ' ', -- Error icon
-                    warn  = ' ', -- Warning icon
-                },
+                sources = { 'nvim_diagnostic' },
+                sections = { 'error', 'warn' },
+                symbols = { error = ' ', warn = ' ' },
                 colored = true,
                 update_in_insert = false,
                 always_visible = false,
             },
             {
-                -- Recording status with blinking effect
-                function()
-                    local recording = vim.fn.reg_recording()
-                    if recording ~= '' then
-                        return ' ' .. recording
-                    end
-                    return ''
-                end,
-                cond = function()
-                    return vim.fn.reg_recording() ~= ''
-                end,
-                color = { fg = '#ff0000', gui = 'bold' }
-            },
-        },
-        lualine_c = {
-            {
-                function()
-                    local blame = vim.fn.system(
-                        'git blame -L '
-                            .. vim.fn.line('.')
-                            .. ',+1 -- '
-                            .. vim.fn.expand('%')
-                    )
-                    local author = blame:match('%((.-)%)')
-                    if author then
-                        return ' ' .. author
-                    end
-                    return ''
-                end,
-                color = { fg = '#aaaaaa', gui = 'italic' },
+                'diff',
+                colored = true,
+                symbols = { added = ' ', modified = ' ', removed = ' ' },
             },
         },
         lualine_x = {
@@ -93,8 +75,6 @@ require("lualine").setup({
                 icon = ' LSP:',
                 color = { fg = '#ffffff', gui = 'bold' },
             },
-        },
-        lualine_y = {
             {
                 function()
                     local mem = (collectgarbage("count") / 1024)
@@ -102,6 +82,16 @@ require("lualine").setup({
                 end,
                 color = { fg = '#ffaa00', gui = 'bold' },
             },
+            "encoding",
+            "filesize",
+        },
+        lualine_y = {
+            {
+                function()
+                    return os.date('%H:%M:%S')
+                end,
+                color = { fg = '#ffaa00', gui = 'bold' },
+            }
         },
         lualine_z = {},
     },
@@ -113,8 +103,5 @@ require("lualine").setup({
         lualine_y = {},
         lualine_z = {},
     },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
     extensions = {},
 })

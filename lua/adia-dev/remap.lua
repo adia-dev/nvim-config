@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 -- Open Rex command
-keymap.set("n", "<leader>e", vim.cmd.Rex, { desc = "Open Rex command", silent = true })
+-- keymap.set("n", "<leader>e", vim.cmd.Rex, { desc = "Open Rex command", silent = true })
 
 -- Move by visual lines instead of actual lines
 keymap.set("n", "j", "gj", { desc = "Move down by visual line", silent = true })

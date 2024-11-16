@@ -177,19 +177,6 @@ return require("packer").startup(function(use)
 
     use({ "terrastruct/d2-vim" })
 
-    -- Packer
-    use({
-        "crnvl96/lazydocker.nvim",
-        config = function()
-            require("lazydocker").setup()
-        end,
-        requires = {
-            "MunifTanjim/nui.nvim",
-        },
-    })
-
-    use('reisub0/hot-reload.vim')
-
     use {
         "folke/which-key.nvim",
         config = function()
@@ -197,4 +184,6 @@ return require("packer").startup(function(use)
         end
     }
     use('junegunn/vim-peekaboo')
+
+    use('neomake/neomake')
 end)

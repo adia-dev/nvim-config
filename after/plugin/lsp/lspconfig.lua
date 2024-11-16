@@ -117,6 +117,7 @@ lspconfig.lua_ls.setup({
     },
 })
 lspconfig.clangd.setup({
+    cmd = { "/usr/bin/clangd" },
     capabilities = capabilities,
 })
 lspconfig.html.setup({
