@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
 
 cmp.setup({
     snippet = {
@@ -23,6 +24,7 @@ cmp.setup({
         { name = "nvim_lsp" },
         -- { name = 'vsnip' }, -- For vsnip users.
         { name = "luasnip" }, -- For luasnip users.
+        { name = 'easy-dotnet' },
     }),
 })
 
