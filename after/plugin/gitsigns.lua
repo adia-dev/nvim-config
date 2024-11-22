@@ -55,7 +55,7 @@ require("gitsigns").setup({
             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, { desc = "Reset selected hunk" })
         map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo last staged hunk" })
-        map("n", "<leader>hr", gs.reset_buffer, { desc = "Reset entire buffer" })
+        map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset entire buffer" })
         map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
         map("n", "<leader>hb", function()
             gs.blame_line({ full = true })

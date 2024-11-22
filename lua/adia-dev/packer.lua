@@ -142,6 +142,7 @@ return require("packer").startup(function(use)
         "Badhi/nvim-treesitter-cpp-tools",
     })
     use("Hoffs/omnisharp-extended-lsp.nvim")
+    use("Decodetalkers/csharpls-extended-lsp.nvim")
 
     -- Terminal
     use({ "akinsho/toggleterm.nvim", tag = "*" })
@@ -186,4 +187,10 @@ return require("packer").startup(function(use)
     use('junegunn/vim-peekaboo')
 
     use('neomake/neomake')
+
+    -- lazy.nvim
+    use({
+        "GustavEikaas/easy-dotnet.nvim",
+        requires = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope.nvim', },
+    })
 end)

@@ -28,7 +28,7 @@ require("nvim-tree").setup({
     renderer = {
         highlight_opened_files = "icon",
         root_folder_modifier = ":~",
-        group_empty = true,
+        group_empty = false,
         icons = {
             show = { file = true, folder = true, git = true, folder_arrow = true },
             glyphs = {
@@ -71,7 +71,7 @@ require("nvim-tree").setup({
         timeout = 500,
     },
     filters = {
-        dotfiles = false,
+        dotfiles = true,
         custom = { "node_modules", "__pycache__" },
     },
     on_attach = custom_keybindings,

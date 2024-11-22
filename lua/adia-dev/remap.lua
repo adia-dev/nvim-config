@@ -84,7 +84,7 @@ local function toggle_opacity()
         vim.cmd("silent !alacritty msg config window.opacity=0.50")
         opacity_state = false
     else
-        vim.cmd("silent !alacritty msg config window.opacity=1.0")
+        vim.cmd("silent !alacritty msg config window.opacity=0.85")
         opacity_state = true
     end
 end
