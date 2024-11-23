@@ -229,6 +229,58 @@ return {
 			return vim.json.decode(json.json_strip_comments(str))
 		end
 
+		-- Filtering of the bin selection in Telescope
+		local function filter_bin(entry)
+			local relative = entry:match(".*/(bin/.*)")
+			if relative then
+				return { value = vim.fn.getcwd() .. "/" .. relative, display = relative, ordinal = relative }
+			end
+			return nil
+		end
+
+		-- Helper for program selection in Telescope
+		local function select_program(bin_filter, filter_function)
+			return coroutine.create(function(coro)
+				local pickers = require("telescope.pickers")
+				local finders = require("telescope.finders")
+				local conf = require("telescope.config").values
+				local actions = require("telescope.actions")
+				local action_state = require("telescope.actions.state")
+
+				pickers
+					.new({}, {
+						prompt_title = "Select Executable",
+						finder = finders.new_oneshot_job(
+							{ "find", vim.fn.getcwd(), "-type", "f", "-name", bin_filter },
+							{
+								cwd = vim.fn.getcwd(),
+								entry_maker = function(entry)
+									if filter_function then
+										local filtered = filter_function(entry)
+										if not filtered then
+											return nil -- Skip if filtering returns nil
+										end
+										return filtered
+									end
+									-- Default entry maker if no filter is applied
+									return { value = entry, display = entry, ordinal = entry }
+								end,
+							}
+						),
+						sorter = conf.generic_sorter({}),
+						attach_mappings = function(prompt_bufnr, _)
+							actions.select_default:replace(function()
+								local selection = action_state.get_selected_entry()
+								actions.close(prompt_bufnr)
+								coroutine.resume(coro, selection.value)
+							end)
+							return true
+						end,
+					})
+					:find()
+			end)
+		end
+
 		-- Binaries
 		local codelldb_path = "~/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"
 
@@ -256,14 +308,29 @@ return {
 
 		dap.configurations.cpp = {
 			{
-				name = "Launch file",
+				name = "Launch C++ File",
 				type = "lldb",
 				request = "launch",
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					return select_program("*")
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
+				console = "integratedTerminal",
+			},
+		}
+
+		dap.configurations.zig = {
+			{
+				name = "Launch Zig File",
+				type = "lldb",
+				request = "launch",
+				program = function()
+					return select_program("zig-out/*")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+				console = "integratedTerminal",
 			},
 		}
 
@@ -273,10 +340,11 @@ return {
 				type = "coreclr",
 				request = "launch",
 				program = function()
-					return vim.fn.input("Path to DLL: ", vim.fn.getcwd() .. "/", "file")
+					return select_program("*.dll", filter_bin)
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
+				console = "integratedTerminal",
 			},
 		}
 
