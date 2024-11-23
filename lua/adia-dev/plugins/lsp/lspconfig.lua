@@ -5,6 +5,8 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
+		{ "Decodetalkers/csharpls-extended-lsp.nvim" },
+		{ "Hoffs/omnisharp-extended-lsp.nvim" },
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -17,6 +19,8 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap -- for conciseness
+
+		local pid = vim.fn.getpid()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -78,6 +82,8 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/Omnisharp.dll"
+
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
 			function(server_name)
@@ -105,6 +111,10 @@ return {
 				-- configure csharp language server
 				lspconfig["csharp_ls"].setup({
 					capabilities = capabilities,
+					handlers = {
+						["textDocument/definition"] = require("csharpls_extended").handler,
+						["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+					},
 				})
 			end,
 			["lua_ls"] = function()
@@ -120,6 +130,57 @@ return {
 							completion = {
 								callSnippet = "Replace",
 							},
+						},
+					},
+				})
+			end,
+			["clangd"] = function()
+				lspconfig["clangd"].setup({
+					capabilities = capabilities,
+					cmd = {
+						"clangd",
+						"--background-index", -- Enable background indexing
+						"--clang-tidy", -- Enable clang-tidy checks
+						"--completion-style=detailed", -- Show detailed completions
+						"--header-insertion=iwyu", -- Use IWYU-style headers
+						"--header-insertion-decorators",
+					},
+					init_options = {
+						clangdFileStatus = true, -- Provides file status updates
+					},
+				})
+			end,
+			["omnisharp"] = function()
+				lspconfig["omnisharp"].setup({
+					cmd = {
+						"dotnet",
+						omnisharp_bin,
+						"--languageserver",
+						"--hostPID",
+						tostring(pid),
+					},
+					handlers = {
+						["textDocument/definition"] = require("omnisharp_extended").definition_handler,
+						["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
+						["textDocument/references"] = require("omnisharp_extended").references_handler,
+						["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+					},
+					capabilities = capabilities,
+					settings = {
+						FormattingOptions = {
+							EnableEditorConfigSupport = true,
+							OrganizeImports = true,
+						},
+						MsBuild = {
+							LoadProjectsOnDemand = true,
+						},
+						RoslynExtensionsOptions = {
+							EnableAnalyzersSupport = true,
+							EnableImportCompletion = true,
+							AnalyzeOpenDocumentsOnly = nil,
+						},
+						Sdk = {
+							IncludePrereleases = true,
 						},
 					},
 				})
