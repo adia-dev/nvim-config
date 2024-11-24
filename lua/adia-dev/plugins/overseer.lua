@@ -28,9 +28,8 @@ return {
 
 		-- Keymaps for task management
 		local keymap = vim.keymap
-		keymap.set("n", "<leader>ot", ":OverseerToggle<CR>", { desc = "Toggle task manager", noremap = true })
-		keymap.set("n", "<leader>or", ":OverseerRun<CR>", { desc = "Run a task", noremap = true })
-		keymap.set("n", "<leader>os", ":OverseerQuickAction stop<CR>", { desc = "Stop current task", noremap = true })
-		keymap.set("n", "<leader>ol", ":OverseerOpen<CR>", { desc = "Open task list", noremap = true })
+		keymap.set("n", "<leader>ovt", ":OverseerToggle<CR>", { desc = "Toggle task manager", noremap = true })
+		keymap.set("n", "<leader>ovr", ":OverseerRun<CR>", { desc = "Run a task", noremap = true })
+		keymap.set("n", "<leader>ovs", ":OverseerQuickAction stop<CR>", { desc = "Stop current task", noremap = true })
 	end,
 }

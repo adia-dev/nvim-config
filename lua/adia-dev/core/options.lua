@@ -14,6 +14,9 @@ opt.autoindent = true
 opt.smartindent = true
 opt.inccommand = "nosplit"
 
+-- Conceal level for Obsidian
+opt.conceallevel = 1
+
 -- Line wrapping
 opt.wrap = false
 
@@ -34,7 +37,7 @@ opt.splitbelow = true
 
 -- File handling
 opt.swapfile = true
-opt.directory= os.getenv("HOME") .. "/.vim/swp"
+opt.directory = os.getenv("HOME") .. "/.vim/swp"
 
 opt.backup = true
 opt.backupdir = os.getenv("HOME") .. "/.vim/bak"
@@ -64,5 +67,5 @@ vim.g.netrw_keepdir = 0
 
 -- Diagnostic settings
 vim.diagnostic.config({
-    virtual_text = false,
+	virtual_text = false,
 })
