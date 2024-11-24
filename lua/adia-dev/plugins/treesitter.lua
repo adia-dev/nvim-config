@@ -41,6 +41,7 @@ return {
 				"gitignore",
 				"query",
 				"vimdoc",
+				"go",
 				"c",
 				"cpp",
 				"c_sharp",
@@ -48,8 +49,8 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<C-i>",
-					node_incremental = "<C-i>",
+					init_selection = "<TAB>",
+					node_incremental = "<TAB>",
 					scope_incremental = false,
 					node_decremental = "<bs>",
 				},

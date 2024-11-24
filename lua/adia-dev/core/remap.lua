@@ -1,5 +1,7 @@
+-- Set the leader key to space
 vim.g.mapleader = " "
 
+-- Define keymap for easier reference
 local keymap = vim.keymap
 
 -- General Keymaps
@@ -20,15 +22,24 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 keymap.set("v", "<", "<gv", { desc = "Unindent selection" })
 keymap.set("v", ">", ">gv", { desc = "Indent selection" })
 
-
 -- Search Enhancements
 keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
 keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights", silent = true })
 
 -- Buffer Operations
-keymap.set("n", "<leader>rp", ':%d|put 0<CR>ggdd', { desc = "Replace entire buffer with default register", silent = true })
-keymap.set("n", "<leader>rP", ":%d|put +<CR>ggdd", { desc = "Replace entire buffer with system clipboard", silent = true })
+keymap.set(
+	"n",
+	"<leader>rp",
+	":%d|put 0<CR>ggdd",
+	{ desc = "Replace entire buffer with default register", silent = true }
+)
+keymap.set(
+	"n",
+	"<leader>rP",
+	":%d|put +<CR>ggdd",
+	{ desc = "Replace entire buffer with system clipboard", silent = true }
+)
 keymap.set("n", "<leader><Tab>", "<C-^>", { desc = "Switch to last buffer" })
 
 -- Window Management
@@ -57,16 +68,36 @@ keymap.set("n", "<leader>tn", ":tabnext<CR>", { desc = "Go to next tab", silent 
 keymap.set("n", "<leader>so", ":so<CR>", { desc = "Source current file", silent = true })
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down half page and center" })
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up half page and center" })
-keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux-sessionizer in new tmux window" })
+
+-- TMUX Sessionizer: Open in TMUX Popup with Custom Size
+keymap.set(
+	"n",
+	"<C-f>",
+	"<cmd>silent !tmux popup -w 100 -h 30 'tmux-sessionizer'<CR>",
+	{ desc = "Open tmux-sessionizer" }
+)
 
 -- Custom Functions
+local opacity_state = false
+local blur_state = false
+
 local function toggle_opacity()
-    vim.cmd("silent !alacritty msg config window.opacity=" .. (opacity_state and "0.50" or "0.85"))
-    opacity_state = not opacity_state
+	if opacity_state then
+		vim.cmd("silent !alacritty msg config window.opacity=0.85")
+	else
+		vim.cmd("silent !alacritty msg config window.opacity=0.50")
+	end
+	opacity_state = not opacity_state
 end
+
 local function toggle_blur()
-    vim.cmd("silent !alacritty msg config window.blur=" .. (blur_state and "true" or "false"))
-    blur_state = not blur_state
+	if blur_state then
+		vim.cmd("silent !alacritty msg config window.blur=false")
+	else
+		vim.cmd("silent !alacritty msg config window.blur=true")
+	end
+	blur_state = not blur_state
 end
+
 keymap.set("n", "<leader>ot", toggle_opacity, { desc = "Toggle Alacritty opacity" })
 keymap.set("n", "<leader>bt", toggle_blur, { desc = "Toggle Alacritty blur" })
