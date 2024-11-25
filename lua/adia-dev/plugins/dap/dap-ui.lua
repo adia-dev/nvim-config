@@ -1,6 +1,6 @@
 return {
 	"rcarriga/nvim-dap-ui",
-	event = "VeryLazy",
+	cmd = { "Dap" },
 	dependencies = { "nvim-neotest/nvim-nio" },
   -- stylua: ignore
   keys = {

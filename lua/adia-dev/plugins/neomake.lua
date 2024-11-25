@@ -1,5 +1,6 @@
 return {
 	"neomake/neomake",
+	cmd = { "Neomake" },
 	config = function()
 		-- Open the location list automatically if there are linting issues
 		vim.g.neomake_open_list = 2
