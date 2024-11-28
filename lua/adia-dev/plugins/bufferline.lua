@@ -21,7 +21,7 @@ return {
 			},
 			show_buffer_close_icons = false, -- Hide buffer close icons
 			show_close_icon = false, -- Hide main close icon
-			separator_style = "slant", -- Use slant separators
+			separator_style = "thin", -- Use slant separators
 			always_show_bufferline = true, -- Always display the bufferline
 		},
 	},

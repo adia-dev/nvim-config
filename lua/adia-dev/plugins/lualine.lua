@@ -61,8 +61,16 @@ return {
 						cond = lazy_status.has_updates,
 						color = { fg = "#ff9e64" },
 					},
-					{ "encoding" },
-					{ "fileformat" },
+					{
+						function()
+							return "Recording"
+						end,
+						icon = "",
+						cond = function()
+							return vim.fn.reg_recording() ~= ""
+						end,
+						color = { fg = "red" },
+					},
 					{ "filetype" },
 				},
 			},
