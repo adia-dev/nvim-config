@@ -101,6 +101,11 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["zls"] = function()
+				lspconfig["zls"].setup({
+					capabilities = capabilities,
+				})
+			end,
 			["csharp_ls"] = function()
 				lspconfig["csharp_ls"].setup({
 					capabilities = capabilities,
