@@ -340,7 +340,7 @@ return {
 				type = "coreclr",
 				request = "launch",
 				program = function()
-					return select_program("*.dll", filter_bin)
+					return select_program("*.dll")
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,

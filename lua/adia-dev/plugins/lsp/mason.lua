@@ -38,7 +38,7 @@ return {
 				"prismals",
 				"pyright",
 				"csharp_ls",
-				"omnisharp",
+				-- "omnisharp",
 			},
 		})
 
