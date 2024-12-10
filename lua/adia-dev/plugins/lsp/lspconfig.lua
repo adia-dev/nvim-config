@@ -6,7 +6,8 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
 		{ "Decodetalkers/csharpls-extended-lsp.nvim" },
-		-- { "Hoffs/omnisharp-extended-lsp.nvim" },
+		{ "Hoffs/omnisharp-extended-lsp.nvim" },
+		{ "nvimdev/lspsaga.nvim", opts = {} },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -58,7 +59,7 @@ return {
 				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
 				opts.desc = "Show documentation for what is under cursor"
-				keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				keymap.set("n", "K", "<CMD>Lspsaga hover_doc<CR>", opts)
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
@@ -123,7 +124,7 @@ return {
 				lspconfig["clangd"].setup({
 					capabilities = capabilities,
 					cmd = {
-						"clangd",
+						"/opt/homebrew/bin/clangd",
 						"--background-index", -- Enable background indexing
 						"--clang-tidy", -- Enable clang-tidy checks
 						"--completion-style=detailed", -- Show detailed completions
