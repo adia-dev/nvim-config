@@ -233,7 +233,7 @@ return {
 		local function filter_bin(entry)
 			local relative = entry:match(".*/(bin/.*)")
 			if relative then
-				return { value = vim.fn.getcwd() .. "/" .. relative, display = relative, ordinal = relative }
+				return { value = entry, display = relative, ordinal = relative }
 			end
 			return nil
 		end
@@ -340,7 +340,7 @@ return {
 				type = "coreclr",
 				request = "launch",
 				program = function()
-					return select_program("*.dll")
+					return select_program("*.dll", filter_bin)
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
