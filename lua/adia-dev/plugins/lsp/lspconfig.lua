@@ -97,6 +97,11 @@ return {
 					},
 				})
 			end,
+			["sqlls"] = function()
+				lspconfig["sqlls"].setup({
+					capabilities = capabilities,
+				})
+			end,
 			["gopls"] = function()
 				lspconfig["gopls"].setup({
 					capabilities = capabilities,

@@ -38,6 +38,7 @@ return {
 				"prismals",
 				"pyright",
 				"csharp_ls",
+				"sqlls",
 				-- "omnisharp",
 			},
 		})

@@ -98,5 +98,5 @@ local function toggle_blur()
 	blur_state = not blur_state
 end
 
-keymap.set("n", "<leader>aot", toggle_opacity, { desc = "Toggle Alacritty opacity" })
-keymap.set("n", "<leader>abt", toggle_blur, { desc = "Toggle Alacritty blur" })
+-- keymap.set("n", "<leader>aot", toggle_opacity, { desc = "Toggle Alacritty opacity" })
+-- keymap.set("n", "<leader>abt", toggle_blur, { desc = "Toggle Alacritty blur" })
