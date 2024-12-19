@@ -326,7 +326,7 @@ return {
 				type = "lldb",
 				request = "launch",
 				program = function()
-					return select_program("zig-out/*")
+					return select_program("*bin*")
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
