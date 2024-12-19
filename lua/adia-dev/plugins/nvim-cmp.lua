@@ -23,9 +23,6 @@ return {
 
 		local lspkind = require("lspkind")
 
-		-- load easy-dotnet completion for better Dotnet integration
-		cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
-
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -51,7 +48,6 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "obsidian" },
-				{ name = "easy-dotnet" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths

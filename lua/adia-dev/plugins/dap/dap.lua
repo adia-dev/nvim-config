@@ -16,14 +16,14 @@ return {
 		{
 			"<leader>dB",
 			function()
-				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+				require("persistent-breakpoints.api").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 			end,
 			desc = "Breakpoint Condition",
 		},
 		{
 			"<leader>db",
 			function()
-				require("dap").toggle_breakpoint()
+				require("persistent-breakpoints.api").toggle_breakpoint()
 			end,
 			desc = "Toggle Breakpoint",
 		},
@@ -158,14 +158,14 @@ return {
 		{
 			"<F9>",
 			function()
-				require("dap").toggle_breakpoint()
+				require("persistent-breakpoints.api").toggle_breakpoint()
 			end,
 			desc = "Toggle Breakpoint",
 		},
 		{
 			"<S-F9>",
 			function()
-				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+				require("persistent-breakpoints.api").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 			end,
 			desc = "Conditional Breakpoint",
 		},
