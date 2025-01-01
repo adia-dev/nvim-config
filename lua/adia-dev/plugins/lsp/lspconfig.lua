@@ -143,50 +143,50 @@ return {
 					},
 				})
 			end,
-			["csharp_ls"] = function()
-				lspconfig["csharp_ls"].setup({
-					capabilities = capabilities,
-					handlers = {
-						["textDocument/definition"] = require("csharpls_extended").handler,
-						["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-					},
-				})
-			end,
-			-- ["omnisharp"] = function()
-			-- 	lspconfig["omnisharp"].setup({
-			-- 		cmd = {
-			-- 			"/Users/ab.dia/devtools/dotnet/dotnet",
-			-- 			"/usr/local/bin/omnisharp-roslyn/Omnisharp.dll",
-			-- 			"--languageserver",
-			-- 			"--hostPID",
-			-- 			tostring(pid),
-			-- 		},
-			-- 		-- handlers = {
-			-- 		-- 	["textDocument/definition"] = require("omnisharp_extended").definition_handler,
-			-- 		-- 	["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
-			-- 		-- 	["textDocument/references"] = require("omnisharp_extended").references_handler,
-			-- 		-- 	["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
-			-- 		-- },
+			-- ["csharp_ls"] = function()
+			-- 	lspconfig["csharp_ls"].setup({
 			-- 		capabilities = capabilities,
-			-- 		settings = {
-			-- 			FormattingOptions = {
-			-- 				EnableEditorConfigSupport = true,
-			-- 				OrganizeImports = true,
-			-- 			},
-			-- 			MsBuild = {
-			-- 				LoadProjectsOnDemand = true,
-			-- 			},
-			-- 			RoslynExtensionsOptions = {
-			-- 				EnableAnalyzersSupport = true,
-			-- 				EnableImportCompletion = true,
-			-- 				AnalyzeOpenDocumentsOnly = nil,
-			-- 			},
-			-- 			Sdk = {
-			-- 				IncludePrereleases = true,
-			-- 			},
+			-- 		handlers = {
+			-- 			["textDocument/definition"] = require("csharpls_extended").handler,
+			-- 			["textDocument/typeDefinition"] = require("csharpls_extended").handler,
 			-- 		},
 			-- 	})
 			-- end,
+			["omnisharp"] = function()
+				lspconfig["omnisharp"].setup({
+					cmd = {
+						"dotnet",
+						"/usr/local/bin/omnisharp-roslyn/Omnisharp.dll",
+						"--languageserver",
+						"--hostPID",
+						tostring(pid),
+					},
+					handlers = {
+						["textDocument/definition"] = require("omnisharp_extended").definition_handler,
+						["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
+						["textDocument/references"] = require("omnisharp_extended").references_handler,
+						["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+					},
+					capabilities = capabilities,
+					settings = {
+						FormattingOptions = {
+							EnableEditorConfigSupport = true,
+							OrganizeImports = true,
+						},
+						MsBuild = {
+							LoadProjectsOnDemand = true,
+						},
+						RoslynExtensionsOptions = {
+							EnableAnalyzersSupport = true,
+							EnableImportCompletion = true,
+							AnalyzeOpenDocumentsOnly = nil,
+						},
+						Sdk = {
+							IncludePrereleases = true,
+						},
+					},
+				})
+			end,
 		})
 	end,
 }

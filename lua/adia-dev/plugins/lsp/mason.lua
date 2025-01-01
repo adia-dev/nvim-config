@@ -37,9 +37,9 @@ return {
 				"emmet_ls",
 				"prismals",
 				"pyright",
-				"csharp_ls",
+				-- "csharp_ls",
 				"sqlls",
-				-- "omnisharp",
+				"omnisharp",
 			},
 		})
 
