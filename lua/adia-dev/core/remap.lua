@@ -8,6 +8,8 @@ local keymap = vim.keymap
 keymap.set("n", "j", "gj", { desc = "Move down by visual line" })
 keymap.set("n", "k", "gk", { desc = "Move up by visual line" })
 keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+keymap.set("n", "<C-p>", "<CMD>cprev<CR>", { desc = "Previous quickfix list element" })
+keymap.set("n", "<C-n>", "<CMD>cnext<CR>", { desc = "Next quickfix list element" })
 
 -- Clipboard
 keymap.set("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
