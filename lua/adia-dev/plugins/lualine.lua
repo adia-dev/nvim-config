@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lualine = require("lualine")
-		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+		local lazy_status = require("lazy.status") -- for lazy pending updates count
 
 		local colors = {
 			blue = "#65D1FF",
@@ -14,6 +14,7 @@ return {
 			fg = "#c3ccdc",
 			bg = "#112638",
 			inactive_bg = "#2c3043",
+			semilightgray = "#bbbbbb", -- define semilightgray if you use it in inactive
 		}
 
 		local my_lualine_theme = {
@@ -49,12 +50,46 @@ return {
 			},
 		}
 
-		-- configure lualine with modified theme
+		-- Custom component to display "current/total" search matches
+		local function search_count()
+			-- Only show if a search pattern exists
+			if vim.fn.getreg("/") == "" then
+				return ""
+			end
+
+			-- Use Vim's built-in searchcount() function
+			local sc = vim.fn.searchcount({ recompute = true, maxcount = 9999 })
+			if sc.total > 0 then
+				return string.format("%d/%d", sc.current, sc.total)
+			end
+			return ""
+		end
+
+		-- Display number of characters in the current buffer
+		local function file_chars_count()
+			local wc = vim.fn.wordcount()
+			-- `wc.chars` includes all characters (not just alphanumeric). Adjust if needed.
+			return wc.chars .. " chars"
+		end
+
+		-- Optionally, you can also show line:column info using lualine's built-in 'location' or custom:
+		-- local function line_col()
+		--   local line = vim.fn.line('.')
+		--   local col = vim.fn.col('.')
+		--   return string.format("%d:%d", line, col)
+		-- end
+
 		lualine.setup({
 			options = {
 				theme = my_lualine_theme,
+				-- You can also set component_separators, section_separators, etc.
+				-- component_separators = { left = "", right = "" },
+				-- section_separators = { left = "", right = "" },
 			},
 			sections = {
+				lualine_a = { "mode" }, -- example: show Vim mode
+				lualine_b = { "branch" },
+				lualine_c = { "filename" },
 				lualine_x = {
 					{
 						lazy_status.updates,
@@ -71,8 +106,22 @@ return {
 						end,
 						color = { fg = "red" },
 					},
+					-- show search count: "n/N"
+					{
+						search_count,
+						icon = "", -- optional: search icon
+					},
+					-- show total characters in the file
+					{
+						file_chars_count,
+						icon = "", -- optional: tweak or remove as you like
+					},
+					-- built-in filetype component
 					{ "filetype" },
 				},
+				-- If you want line:col info, can use built-in 'location' or define your own
+				lualine_y = { "location" },
+				lualine_z = { "progress" },
 			},
 		})
 	end,

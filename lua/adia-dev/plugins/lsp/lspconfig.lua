@@ -112,6 +112,11 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["solidity"] = function()
+				lspconfig["solidity"].setup({
+					capabilities = capabilities,
+				})
+			end,
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
