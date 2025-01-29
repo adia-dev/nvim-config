@@ -103,15 +103,5 @@ return {
 				enabled = true,
 			},
 		})
-
-		-- Example command
-		vim.api.nvim_create_user_command("Secrets", function()
-			dotnet.secrets()
-		end, {})
-
-		-- Example keybinding
-		vim.keymap.set("n", "<C-p>", function()
-			dotnet.run_project()
-		end)
 	end,
 }

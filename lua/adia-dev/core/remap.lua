@@ -102,3 +102,7 @@ end
 
 keymap.set("n", "<leader>oT", toggle_opacity, { desc = "Toggle Alacritty opacity" })
 keymap.set("n", "<leader>oB", toggle_blur, { desc = "Toggle Alacritty blur" })
+
+keymap.set("n", "<leader>cc", function()
+	vim.cmd([[%s/\v\/\/.*|\/\*\_.{-}\*\///g]])
+end, { desc = "Delete all comments" })
