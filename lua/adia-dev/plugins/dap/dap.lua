@@ -302,7 +302,7 @@ return {
 		dap.adapters.lldb = { type = "executable", command = "/opt/homebrew/bin/lldb-dap", name = "lldb" }
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = "/usr/local/bin/netcoredbg/netcoredbg",
+			command = "~/.local/netcoredbg",
 			args = { "--interpreter=vscode" },
 		}
 
