@@ -106,3 +106,6 @@ keymap.set("n", "<leader>oB", toggle_blur, { desc = "Toggle Alacritty blur" })
 keymap.set("n", "<leader>cc", function()
 	vim.cmd([[%s/\v\/\/.*|\/\*\_.{-}\*\///g]])
 end, { desc = "Delete all comments" })
+
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit insert mode in terminal mode", noremap = true, silent = true })
+keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit insert mode in terminal mode", noremap = true, silent = true })

@@ -7,9 +7,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 return {
 	"rest-nvim/rest.nvim",
-	cmd = {
-		"Rest",
-	},
+	cmd = { "Rest" },
+	ft = { "http" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		opts = function(_, opts)
