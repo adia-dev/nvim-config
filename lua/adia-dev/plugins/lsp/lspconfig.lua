@@ -14,8 +14,6 @@ return {
 
 		local mason_lspconfig = require("mason-lspconfig")
 
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		local keymap = vim.keymap
 
 		local pid = vim.fn.getpid()
@@ -26,7 +24,7 @@ return {
 				local opts = { buffer = ev.buf, silent = true }
 
 				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+				keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 
 				opts.desc = "Go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -42,6 +40,9 @@ return {
 
 				opts.desc = "See available code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+				opts.desc = "Show codelens"
+				keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, opts)
 
 				opts.desc = "Smart rename"
 				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
@@ -66,7 +67,16 @@ return {
 			end,
 		})
 
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		vim.diagnostic.config({
+			virtual_text = true,
+			float = {
+				source = "if_many",
+				border = "rounded",
+			},
+			severity_sort = true,
+		})
+
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
