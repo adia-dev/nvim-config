@@ -2,11 +2,6 @@ return {
 	"rcarriga/nvim-dap-ui",
 	cmd = { "Dap" },
 	dependencies = { "nvim-neotest/nvim-nio" },
-  -- stylua: ignore
-  keys = {
-    { "<leader>du", function() require("dapui").toggle({ reset = true }) end, desc = "Dap UI" },
-    { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
-  },
 	opts = {
 		-- Remove "repl" by omitting it from the layout elements
 		layouts = {
